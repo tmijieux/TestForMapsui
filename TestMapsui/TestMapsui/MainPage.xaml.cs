@@ -1,6 +1,7 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace TestMapsui
@@ -16,6 +17,8 @@ namespace TestMapsui
         private void SKGLView_PaintSurface(object sender, SKPaintGLSurfaceEventArgs e)
         {
             Console.WriteLine("[DBG]   Begin Paint Surface");
+            Console.WriteLine($"[DBG]   PaintSurface currentThread={Thread.CurrentThread.ManagedThreadId}");
+
             var canvas = e.Surface.Canvas;
             canvas.Clear();
             var width = MyGLView.CanvasSize.Width;
@@ -39,6 +42,7 @@ namespace TestMapsui
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            Console.WriteLine($"[DBG]   Button_Clicked currentThread={Thread.CurrentThread.ManagedThreadId}");
             numDraws = 0;
             Console.WriteLine("[DBG]   button clicked (before invalidate())");
             MyGLView.InvalidateSurface();
@@ -48,6 +52,8 @@ namespace TestMapsui
 
         private void Button_Clicked2(object sender, EventArgs e)
         {
+            Console.WriteLine($"[DBG]   Button_Clicked2 currentThread={Thread.CurrentThread.ManagedThreadId}");
+
             numDraws = 0;
             Console.WriteLine("[DBG]   button clicked (before invalidate() x2)");
             MyGLView.InvalidateSurface();
@@ -57,13 +63,15 @@ namespace TestMapsui
 
         private void Button_Clicked3(object sender, EventArgs e)
         {
+            Console.WriteLine($"[DBG]   Button_Clicked3 currentThread={Thread.CurrentThread.ManagedThreadId}");
+
             numDraws = 0;
-            Console.WriteLine("[DBG]   button clicked (before invalidate() x3)");
+            Console.WriteLine("[DBG]   button clicked (before invalidate() x300)");
             for (int i = 0; i < 300; ++i)
             {
                 MyGLView.InvalidateSurface();
             }
-            Console.WriteLine("[DBG]   button clicked (after invalidate() x3)");
+            Console.WriteLine("[DBG]   button clicked (after invalidate() x300)");
         }
     }
 }
