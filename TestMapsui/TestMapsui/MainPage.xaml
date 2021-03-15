@@ -7,13 +7,13 @@
         <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*">
             <Button Text="Invalidate!" Clicked="Button_Clicked"/>
             <Button Text="Invalidate x2!" Clicked="Button_Clicked2" Grid.Column="1"/>
-            <Button Text="Invalidate x3!" Clicked="Button_Clicked3" Grid.Column="2"/>
+            <Button Text="Invalidate x300!" Clicked="Button_Clicked3" Grid.Column="2"/>
             <Label x:Name="DrawCountLabel" Grid.Row="1" Grid.ColumnSpan="3" TextColor="White"/>
         </Grid>
 
         <skia:SKGLView
             Grid.Row="1"
-            x:Name="MyGLView"
+            x:Name="MySKView"
             PaintSurface="SKGLView_PaintSurface">
             
         </skia:SKGLView>
